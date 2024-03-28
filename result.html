@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+hish<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,9 +14,9 @@
                     <div class="text-center">
                         <h2>Results</h2>
                         <p>Your score: {{ score }} out of 10</p>
-                        <p>Best score: {{ high_score }}</p>
-                        {% if new_high_score %}
-                            <p>Congratulations! You've achieved a new high score: {{ new_high_score }}</p>
+                        <p>Best score: {{ best_score }}</p>
+                        {% if new_best_score %}
+                            <p>Congratulations! You've achieved a new best result: {{ new_best_score }}</p>
                         {% endif %}
                         <button type="button" class="btn btn-primary" onclick="window.location.href = '/';">Try Again</button>
                     </div>
