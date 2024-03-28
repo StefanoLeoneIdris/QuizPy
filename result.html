@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Quiz App</h1>
+                    <div class="text-center">
+                        <h2>Results</h2>
+                        <p>Your score: {{ score }} out of 10</p>
+                        <p>Best score: {{ high_score }}</p>
+                        {% if new_high_score %}
+                            <p>Congratulations! You've achieved a new high score: {{ new_high_score }}</p>
+                        {% endif %}
+                        <button type="button" class="btn btn-primary" onclick="window.location.href = '/';">Try Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="row justify-content-center mt-3">
+      <div class="col-8">
+          <div class="card">
+              <div class="card-body">
+                  <p class="text-center">Leone Stefano</p>
+                  <p class="text-center">Email: stefano.leoleo@gmail.com</p>
+                  <p class="text-center">Telefono: +39 338 929 4878</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+</html>

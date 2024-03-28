@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <div class="row mt-3">
+        <div class="col text-right">
+            <p>Best Score: {{ high_score }} / {{quiz|length}}</p>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Quiz App</h1>
+                    <form action="/submit" method="post">
+                        {% for q in quiz %}
+                            <div class="form-group">
+                                <p>{{ q.question }}</p>
+                                {% for choice in q.choices %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="{{ q.question }}" id="{{ q.question }}_{{ loop.index }}" value="{{ choice }}">
+                                        <label class="form-check-label" for="{{ q.question }}_{{ loop.index }}">{{ choice }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="row justify-content-center mt-3">
+      <div class="col-8">
+          <div class="card">
+              <div class="card-body">
+                  <p class="text-center">Leone Stefano</p>
+                  <p class="text-center">Email: stefano.leoleo@gmail.com</p>
+                  <p class="text-center">Telefono: +39 338 929 4878</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+</html>
