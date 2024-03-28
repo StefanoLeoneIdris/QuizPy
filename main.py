@@ -4,33 +4,37 @@ from flask import Flask, render_template, request
 
 main = Flask(__name__)
 
-def get_high_score():
-    if not os.path.exists('high_score.txt'):
-        with open('high_score.txt', 'w') as file:
+#consistenza dati tramite file .txt
+def get_best_score():
+    if not os.path.exists('best_score.txt'):
+        with open('best_score.txt', 'w') as file:
             file.write('0')
-    with open('high_score.txt', 'r') as file:
+    with open('best_score.txt', 'r') as file:
         return int(file.read())
 
-def update_high_score(new_score):
-    current_high_score = get_high_score()
-    if new_score > current_high_score:
-        with open('high_score.txt', 'w') as file:
+#consistenza dati tramite file .txt. Aggiornamento best score
+def update_best_score(new_score):
+    current_best_score = get_best_score()
+    if new_score > current_best_score:
+        with open('best_score.txt', 'w') as file:
             file.write(str(new_score))
         return new_score
-    return current_high_score
+    return current_best_score
 
+#estrazione di solo 10 domande casuali; shuffle risposte
 def get_random_quiz_questions():
   R_quiz = random.sample(quiz, 10)
   for question in quiz:
     random.shuffle(question["choices"])
   return R_quiz
 
+#render_template homepage
 @main.route('/')
 def index():
   R_quiz = get_random_quiz_questions()
-  return render_template('index.html', quiz=R_quiz, high_score=get_high_score())
+  return render_template('index.html', quiz=R_quiz, best_score=get_best_score())
 
-
+#render_template result page
 @main.route('/submit', methods=['POST'])
 def submit():
     score = 0
@@ -38,11 +42,10 @@ def submit():
         user_answer = request.form.get(q['question'])
         if user_answer == q['answer']:
             score += 1
-    new_high_score = update_high_score(score)
-    return render_template('result.html', score=score, quiz=quiz, get_high_score=get_high_score, new_high_score=new_high_score)
+    new_best_score = update_best_score(score)
+    return render_template('result.html', score=score, quiz=quiz, get_best_score=get_best_score, new_best_score=new_best_score)
 
-
-# Define a simple data structure for the quiz questions and answers
+#array domande con shuffle
 quiz = [
     {
         "question": "Che cos'è la visione computerizzata?",
